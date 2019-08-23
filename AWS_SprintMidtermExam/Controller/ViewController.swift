@@ -57,14 +57,16 @@ extension ViewController {
 //        tableView.contentInset = UIEdgeInsets(top: -UIApplication.shared.statusBarFrame.height, left: 0, bottom: 0, right: 0)
         tableView.contentInsetAdjustmentBehavior = .never
         
+        
         //ScrollView
         scrollView = UIScrollView()
         scrollView.frame = CGRect(x: 0, y: 0, width: width, height: width)
         scrollView.contentOffset = CGPoint(x: 0, y: 0)
         scrollView.contentSize = CGSize(width: width, height: width)
-        scrollView.bouncesZoom = true
+        
         scrollView.delegate = self
         
+        scrollView.clipsToBounds = false
         //headerView
         
         imageView.frame = CGRect(x: 0, y: 0, width: width, height: width)
@@ -133,8 +135,9 @@ extension ViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let outOfBounds = tableView.contentOffset.y
         print(outOfBounds)
-        scrollView.bounds = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: width - outOfBounds, height: width - outOfBounds))
-        imageView.bounds = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: width - outOfBounds, height: width - outOfBounds))
+        if outOfBounds < 0 {
+            imageView.frame = CGRect(origin: CGPoint(x: outOfBounds/2, y: outOfBounds), size: CGSize(width: width - outOfBounds, height: width - outOfBounds))
+        }
     }
     
 }
