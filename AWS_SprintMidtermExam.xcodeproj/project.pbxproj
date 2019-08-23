@@ -13,6 +13,9 @@
 		011175F2230F73BC0092604C /* AWS_SprintMidtermExam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 011175F0230F73BC0092604C /* AWS_SprintMidtermExam.xcdatamodeld */; };
 		011175F4230F73BE0092604C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011175F3230F73BE0092604C /* Assets.xcassets */; };
 		011175F7230F73BE0092604C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 011175F5230F73BE0092604C /* LaunchScreen.storyboard */; };
+		013B5148230F7F0C00652D49 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B5147230F7F0C00652D49 /* HTTPClient.swift */; };
+		013B514A230F89FE00652D49 /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B5149230F89FE00652D49 /* ResultType.swift */; };
+		20420224E2643500E9974977 /* Pods_AWS_SprintMidtermExam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 102EAE4A2B363DCBAF42C5D1 /* Pods_AWS_SprintMidtermExam.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,11 @@
 		011175F3230F73BE0092604C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		011175F6230F73BE0092604C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		011175F8230F73BE0092604C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		013B5147230F7F0C00652D49 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		013B5149230F89FE00652D49 /* ResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
+		102EAE4A2B363DCBAF42C5D1 /* Pods_AWS_SprintMidtermExam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AWS_SprintMidtermExam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEF3BFF7E73E201423476F22 /* Pods-AWS_SprintMidtermExam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AWS_SprintMidtermExam.release.xcconfig"; path = "Target Support Files/Pods-AWS_SprintMidtermExam/Pods-AWS_SprintMidtermExam.release.xcconfig"; sourceTree = "<group>"; };
+		E9CB265873D53D8B9E0CA3CF /* Pods-AWS_SprintMidtermExam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AWS_SprintMidtermExam.debug.xcconfig"; path = "Target Support Files/Pods-AWS_SprintMidtermExam/Pods-AWS_SprintMidtermExam.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20420224E2643500E9974977 /* Pods_AWS_SprintMidtermExam.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +51,8 @@
 			children = (
 				011175E8230F73BC0092604C /* AWS_SprintMidtermExam */,
 				011175E7230F73BC0092604C /* Products */,
+				B1A1094761E4FE1A3CA89337 /* Pods */,
+				63928E97A12F07E5F9FA0E9C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +68,65 @@
 			isa = PBXGroup;
 			children = (
 				011175E9230F73BC0092604C /* AppDelegate.swift */,
-				011175EB230F73BC0092604C /* ViewController.swift */,
-				011175ED230F73BC0092604C /* Main.storyboard */,
+				013B5143230F7E9500652D49 /* Model */,
+				013B5144230F7EB900652D49 /* Controller */,
+				013B5145230F7EC100652D49 /* View */,
 				011175F3230F73BE0092604C /* Assets.xcassets */,
 				011175F5230F73BE0092604C /* LaunchScreen.storyboard */,
 				011175F8230F73BE0092604C /* Info.plist */,
 				011175F0230F73BC0092604C /* AWS_SprintMidtermExam.xcdatamodeld */,
 			);
 			path = AWS_SprintMidtermExam;
+			sourceTree = "<group>";
+		};
+		013B5143230F7E9500652D49 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				013B5146230F7EE900652D49 /* HTTPS */,
+				013B5149230F89FE00652D49 /* ResultType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		013B5144230F7EB900652D49 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				011175EB230F73BC0092604C /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		013B5145230F7EC100652D49 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				011175ED230F73BC0092604C /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		013B5146230F7EE900652D49 /* HTTPS */ = {
+			isa = PBXGroup;
+			children = (
+				013B5147230F7F0C00652D49 /* HTTPClient.swift */,
+			);
+			path = HTTPS;
+			sourceTree = "<group>";
+		};
+		63928E97A12F07E5F9FA0E9C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				102EAE4A2B363DCBAF42C5D1 /* Pods_AWS_SprintMidtermExam.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B1A1094761E4FE1A3CA89337 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9CB265873D53D8B9E0CA3CF /* Pods-AWS_SprintMidtermExam.debug.xcconfig */,
+				CEF3BFF7E73E201423476F22 /* Pods-AWS_SprintMidtermExam.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +136,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 011175FB230F73BE0092604C /* Build configuration list for PBXNativeTarget "AWS_SprintMidtermExam" */;
 			buildPhases = (
+				ADB2025628F3F1C368C8BBC3 /* [CP] Check Pods Manifest.lock */,
 				011175E2230F73BC0092604C /* Sources */,
 				011175E3230F73BC0092604C /* Frameworks */,
 				011175E4230F73BC0092604C /* Resources */,
@@ -133,13 +196,40 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		ADB2025628F3F1C368C8BBC3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AWS_SprintMidtermExam-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		011175E2230F73BC0092604C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				013B514A230F89FE00652D49 /* ResultType.swift in Sources */,
 				011175EC230F73BC0092604C /* ViewController.swift in Sources */,
 				011175F2230F73BC0092604C /* AWS_SprintMidtermExam.xcdatamodeld in Sources */,
+				013B5148230F7F0C00652D49 /* HTTPClient.swift in Sources */,
 				011175EA230F73BC0092604C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,6 +374,7 @@
 		};
 		011175FC230F73BE0092604C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9CB265873D53D8B9E0CA3CF /* Pods-AWS_SprintMidtermExam.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +393,7 @@
 		};
 		011175FD230F73BE0092604C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEF3BFF7E73E201423476F22 /* Pods-AWS_SprintMidtermExam.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
