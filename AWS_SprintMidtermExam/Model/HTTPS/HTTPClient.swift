@@ -26,6 +26,12 @@ enum STHTTPClientError: Error {
     case unexpectedError
 }
 
+protocol SwitchMyCollection {
+    
+    func collectionSwitch(_ cell: PlayListTableViewCell)
+    
+}
+
 class HTTPClient {
     
     static let shared = HTTPClient()
@@ -184,9 +190,8 @@ struct PlayList: Codable {
     var explicitness: Bool
     var available_territories: [String]
     var album: Album
-    var favorite: Bool
     enum Codingkeys: String, CodingKey {
-        case id, name, duration, url, track_number, explicitness, available_territories, album, favorite
+        case id, name, duration, url, track_number, explicitness, available_territories, album
     }
 }
 
@@ -221,4 +226,9 @@ struct AlbumArtist: Codable {
     enum Codingkeys: String, CodingKey {
         case id, name, url, images
     }
+}
+
+struct PlayListWithCollection {
+    var playList: PlayList
+    var collection: Bool
 }

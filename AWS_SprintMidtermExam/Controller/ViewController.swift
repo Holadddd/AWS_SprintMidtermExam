@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ViewController: UIViewController {
 
@@ -20,8 +21,12 @@ class ViewController: UIViewController {
     
     let width = UIScreen.main.bounds.width
     
-    var playListArr:[PlayList] = [] {
+    var playListArr:[PlayListWithCollection] = [] {
         didSet {
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
             
         }
     }
@@ -71,17 +76,44 @@ extension ViewController: UITableViewDelegate {
     
 }
 
-extension ViewController: UITableViewDataSource {
+extension ViewController: UITableViewDataSource, SwitchMyCollection {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return playListArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let info = playListArr[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlayListTableViewCell") as? PlayListTableViewCell else { fatalError() }
+        let albumImageUrl = URL(string: info.playList.album.images[0].url)
+        cell.albumImage.kf.setImage(with: albumImageUrl)
+       
+        cell.albumNameLabel.text = info.playList.name
+        
+        switch info.collection {
+        case true:
+            cell.collectionButton.setImage(UIImage(named: "heartTrue"), for: .normal)
+        case false:
+            cell.collectionButton.setImage(UIImage(named: "heartFalse"), for: .normal)
+        }
+        
+        cell.delegate = self
+        
+        return cell
     }
     
-    
-    
+    func collectionSwitch(_ cell: PlayListTableViewCell) {
+        print(collectionSwitch)
+
+        guard let indexPath = tableView.indexPath(for: cell) else { fatalError() }
+        print(indexPath)
+        let data = playListArr[indexPath.row]
+        
+        playListArr[indexPath.row].collection = !(data.collection)
+        
+        tableView.reloadData()
+    }
+
 }
 
 extension ViewController {
@@ -145,10 +177,11 @@ extension ViewController {
         do {
             let info = try decoder.decode(PlayListData.self, from: data)
             print(info.data.count)
-//            info.data.map { (PlayList) -> Void in
-//                playListArr.append(PlayList)
-//            }
-            playListArr += info.data
+            
+            playListArr += info.data.map { (PlayList) -> PlayListWithCollection in
+                PlayListWithCollection(playList: PlayList, collection: false)
+            }
+            
         } catch {
             print(error)
         }

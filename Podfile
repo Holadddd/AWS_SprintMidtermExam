@@ -6,5 +6,6 @@ target 'AWS_SprintMidtermExam' do
   use_frameworks!
 
   # Pods for AWS_SprintMidtermExam
-
+  pod 'MJRefresh'
+  pod 'Kingfisher'
 end
