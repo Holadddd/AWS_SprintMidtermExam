@@ -22,10 +22,13 @@ class ViewController: UIViewController {
     
     let width = UIScreen.main.bounds.width
     
+    var justSwitch = false
+    
     var playListArr:[PlayListWithCollection] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                
                 self.tableView.endFooterRefreshing()
                 self.tableView.endHeaderRefreshing()
                 
@@ -59,7 +62,6 @@ extension ViewController {
 //        tableView.contentInset = UIEdgeInsets(top: -UIApplication.shared.statusBarFrame.height, left: 0, bottom: 0, right: 0)
         tableView.contentInsetAdjustmentBehavior = .never
         
-        
         //ScrollView
         scrollView = UIScrollView()
         scrollView.frame = CGRect(x: 0, y: 0, width: width, height: width)
@@ -83,16 +85,22 @@ extension ViewController {
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        UIView.animate(withDuration: 0.3) {
-            cell.alpha = 0.3
-            cell.alpha = 1
+        if !justSwitch {
+            UIView.animate(withDuration: 0.3) {
+                cell.alpha = 0.3
+                cell.alpha = 1
+            }
         }
     }
     
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        justSwitch = false
+    }
+
 }
 
 extension ViewController: UITableViewDataSource, SwitchMyCollection {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return playListArr.count
     }
@@ -107,9 +115,9 @@ extension ViewController: UITableViewDataSource, SwitchMyCollection {
         
         switch info.collection {
         case true:
-            cell.collectionButton.setImage(UIImage(named: "heartTrue"), for: .normal)
+            cell.collectionButton.setImage(UIImage(named: "btn_like_selected"), for: .normal)
         case false:
-            cell.collectionButton.setImage(UIImage(named: "heartFalse"), for: .normal)
+            cell.collectionButton.setImage(UIImage(named: "btn_like_normal"), for: .normal)
         }
         
         cell.delegate = self
@@ -118,8 +126,7 @@ extension ViewController: UITableViewDataSource, SwitchMyCollection {
     }
     
     func collectionSwitch(_ cell: PlayListTableViewCell) {
-        print(collectionSwitch)
-
+        justSwitch = true
         guard let indexPath = tableView.indexPath(for: cell) else { fatalError() }
         print(indexPath)
         let data = playListArr[indexPath.row]
@@ -127,6 +134,7 @@ extension ViewController: UITableViewDataSource, SwitchMyCollection {
         playListArr[indexPath.row].collection = !(data.collection)
         
         tableView.reloadData()
+        justSwitch = !justSwitch
     }
 
 }
