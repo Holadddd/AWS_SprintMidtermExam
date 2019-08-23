@@ -44,6 +44,7 @@ class HTTPClient {
     
     let semaphore = DispatchSemaphore(value: 1)
 }
+
 extension HTTPClient {
     
     func kkboxAccessToken (completion: @escaping (Result<Data>) -> Void) {

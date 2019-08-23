@@ -27,7 +27,9 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.tableView.endFooterRefreshing()
-//                self.tableView.endHeaderRefreshing()
+                self.tableView.endHeaderRefreshing()
+                
+                self.imageView.frame = CGRect(x: 0, y: 0, width: self.width, height: self.width)
             }
         }
     }
@@ -41,10 +43,10 @@ class ViewController: UIViewController {
             //loadNextPage
             self.playList(offset: self.playListArr.count)
         }
-//        self.tableView.addRefreshHeader {
-//            self.playListArr.removeAll()
-//            self.playList(offset: 0)
-//        }
+        self.tableView.addRefreshHeader {
+            self.playListArr.removeAll()
+            self.playList(offset: 0)
+        }
     }
 }
 
@@ -76,17 +78,16 @@ extension ViewController {
         tableView.tableHeaderView = scrollView
     }
     
-    
 }
 
 extension ViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.3) {
             cell.alpha = 0.3
             cell.alpha = 1
         }
     }
-    
     
 }
 
@@ -134,12 +135,11 @@ extension ViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let outOfBounds = tableView.contentOffset.y
-        print(outOfBounds)
         if outOfBounds < 0 {
             imageView.frame = CGRect(origin: CGPoint(x: outOfBounds/2, y: outOfBounds), size: CGSize(width: width - outOfBounds, height: width - outOfBounds))
         }
     }
-    
+
 }
 
 extension ViewController {
@@ -197,7 +197,7 @@ extension ViewController {
             print(error)
         }
     }
-    
+
 }
 
 

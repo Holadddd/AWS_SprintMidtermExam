@@ -16,7 +16,6 @@
 		011175F4230F73BE0092604C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011175F3230F73BE0092604C /* Assets.xcassets */; };
 		011175F7230F73BE0092604C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 011175F5230F73BE0092604C /* LaunchScreen.storyboard */; };
 		013B5148230F7F0C00652D49 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B5147230F7F0C00652D49 /* HTTPClient.swift */; };
-		013B514A230F89FE00652D49 /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B5149230F89FE00652D49 /* ResultType.swift */; };
 		20420224E2643500E9974977 /* Pods_AWS_SprintMidtermExam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 102EAE4A2B363DCBAF42C5D1 /* Pods_AWS_SprintMidtermExam.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +31,6 @@
 		011175F6230F73BE0092604C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		011175F8230F73BE0092604C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		013B5147230F7F0C00652D49 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
-		013B5149230F89FE00652D49 /* ResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
 		102EAE4A2B363DCBAF42C5D1 /* Pods_AWS_SprintMidtermExam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AWS_SprintMidtermExam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF3BFF7E73E201423476F22 /* Pods-AWS_SprintMidtermExam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AWS_SprintMidtermExam.release.xcconfig"; path = "Target Support Files/Pods-AWS_SprintMidtermExam/Pods-AWS_SprintMidtermExam.release.xcconfig"; sourceTree = "<group>"; };
 		E9CB265873D53D8B9E0CA3CF /* Pods-AWS_SprintMidtermExam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AWS_SprintMidtermExam.debug.xcconfig"; path = "Target Support Files/Pods-AWS_SprintMidtermExam/Pods-AWS_SprintMidtermExam.debug.xcconfig"; sourceTree = "<group>"; };
@@ -79,8 +77,8 @@
 		011175E8230F73BC0092604C /* AWS_SprintMidtermExam */ = {
 			isa = PBXGroup;
 			children = (
-				010E822E230FBB3600F1580A /* Third Party Wrapper */,
 				011175E9230F73BC0092604C /* AppDelegate.swift */,
+				010E822E230FBB3600F1580A /* Third Party Wrapper */,
 				013B5143230F7E9500652D49 /* Model */,
 				013B5144230F7EB900652D49 /* Controller */,
 				013B5145230F7EC100652D49 /* View */,
@@ -96,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				013B5146230F7EE900652D49 /* HTTPS */,
-				013B5149230F89FE00652D49 /* ResultType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,7 +256,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				010E8230230FBB8200F1580A /* MJRefreshWrapper.swift in Sources */,
-				013B514A230F89FE00652D49 /* ResultType.swift in Sources */,
 				011175EC230F73BC0092604C /* ViewController.swift in Sources */,
 				011175F2230F73BC0092604C /* AWS_SprintMidtermExam.xcdatamodeld in Sources */,
 				013B5148230F7F0C00652D49 /* HTTPClient.swift in Sources */,
