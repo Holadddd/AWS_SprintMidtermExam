@@ -83,8 +83,8 @@ extension ViewController: UITableViewDelegate {
             cell.alpha = 0.3
             cell.alpha = 1
         }
-        
     }
+    
     
 }
 
@@ -126,6 +126,17 @@ extension ViewController: UITableViewDataSource, SwitchMyCollection {
         tableView.reloadData()
     }
 
+}
+
+extension ViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let outOfBounds = tableView.contentOffset.y
+        print(outOfBounds)
+        scrollView.bounds = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: width - outOfBounds, height: width - outOfBounds))
+        imageView.bounds = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: width - outOfBounds, height: width - outOfBounds))
+    }
+    
 }
 
 extension ViewController {
