@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import MJRefresh
 
 class ViewController: UIViewController {
 
@@ -23,11 +24,11 @@ class ViewController: UIViewController {
     
     var playListArr:[PlayListWithCollection] = [] {
         didSet {
-            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.tableView.endFooterRefreshing()
+//                self.tableView.endHeaderRefreshing()
             }
-            
         }
     }
     
@@ -35,26 +36,31 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         tableViewSetup()
         api()
+        
+        self.tableView.addRefreshFooter {
+            //loadNextPage
+            self.playList(offset: self.playListArr.count)
+        }
+//        self.tableView.addRefreshHeader {
+//            self.playListArr.removeAll()
+//            self.playList(offset: 0)
+//        }
     }
-
-
 }
+
 extension ViewController {
     
     func tableViewSetup() {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        //refreshControl
-//        refreshControl = UIRefreshControl()
-//        self.refreshControl.addTarget(self, action: #selector(ViewController.refresh), for: UIControlEvents.valueChanged)
-//        refreshControl.attributedTitle = NSAttributedString(string: "重新整理中...")
-//        tableView?.addSubview(self.refreshControl)
+//        tableView.contentInset = UIEdgeInsets(top: -UIApplication.shared.statusBarFrame.height, left: 0, bottom: 0, right: 0)
+        tableView.contentInsetAdjustmentBehavior = .never
         
         //ScrollView
         scrollView = UIScrollView()
         scrollView.frame = CGRect(x: 0, y: 0, width: width, height: width)
+        scrollView.contentOffset = CGPoint(x: 0, y: 0)
         scrollView.contentSize = CGSize(width: width, height: width)
         scrollView.bouncesZoom = true
         scrollView.delegate = self
@@ -72,7 +78,13 @@ extension ViewController {
 }
 
 extension ViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.3) {
+            cell.alpha = 0.3
+            cell.alpha = 1
+        }
+        
+    }
     
 }
 
@@ -130,9 +142,9 @@ extension ViewController {
         }
     }
     
-    func playList() {
+    func playList(offset: Int) {
         
-        HTTPClient.shared.getPlayList {[weak self] result in
+        HTTPClient.shared.getPlayList(offset: offset) {[weak self] result in
             switch result {
             case .success(let data):
                 print(data)
@@ -144,29 +156,14 @@ extension ViewController {
         }
         
     }
-    
-    func paginPlayList() {
-        
-        HTTPClient.shared.getPlayList(offset: playListArr.count) {[weak self] result in
-            switch result {
-            case .success(let data):
-                print(data)
-                HTTPClient.shared.semaphore.signal()
-                self?.parsePlayListData(data: data)
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
-    }
-    
+
     func parseTokenDate(data: Data) {
         let decoder = JSONDecoder()
         do {
             let info = try decoder.decode(Oauth2Token.self, from: data)
             print(info.access_token)
             HTTPClient.shared.token = info.access_token
-            playList()
+            playList(offset: 0)
         } catch {
             print(error)
         }

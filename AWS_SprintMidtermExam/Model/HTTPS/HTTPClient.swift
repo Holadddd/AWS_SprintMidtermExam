@@ -103,19 +103,19 @@ extension HTTPClient {
         
     }
     
-    func getPlayList(limit: Int = 20, offset: Int = 0 ,completion: @escaping (Result<Data>) -> Void) {
+    func getPlayList(offset: Int ,completion: @escaping (Result<Data>) -> Void) {
         
         semaphore.wait()
         
         let play_list = "DZrC8m29ciOFY2JAm3"
         
-        let limit = limit
+        let limit = 20
         
-        let offset = offset
-        
+        let offset = offset 
+        print(offset)
         let territory = "TW"
         
-        let query = "v1.1/new-hits-playlists/\(play_list)/tracks?territory=\(territory)&limit=\(limit)"
+        let query = "v1.1/new-hits-playlists/\(play_list)/tracks?territory=\(territory)&limit=\(limit)&offset=\(offset)"
         
         guard let url = URL(string: "https://account.kkbox.com/\(query)") else { fatalError() }
         

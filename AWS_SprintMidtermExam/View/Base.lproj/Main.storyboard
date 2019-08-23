@@ -13,14 +13,15 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AWS_SprintMidtermExam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController wantsFullScreenLayout="YES" providesPresentationContextTransitionStyle="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="AWS_SprintMidtermExam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ivg-eP-W8C">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ivg-eP-W8C">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <viewLayoutGuide key="safeArea" id="xqF-Nf-ULm"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayListTableViewCell" rowHeight="100" id="cyq-kD-Reh" customClass="PlayListTableViewCell" customModule="AWS_SprintMidtermExam" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="100"/>
@@ -81,10 +82,11 @@
                             <constraint firstItem="Ivg-eP-W8C" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BcG-AS-crA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ivg-eP-W8C" secondAttribute="trailing" id="F47-Xt-RyU"/>
                             <constraint firstItem="Ivg-eP-W8C" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Sux-iD-Moa"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ivg-eP-W8C" secondAttribute="bottom" id="y8L-rz-i9Z"/>
+                            <constraint firstAttribute="bottom" secondItem="Ivg-eP-W8C" secondAttribute="bottom" id="y8L-rz-i9Z"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="tableView" destination="Ivg-eP-W8C" id="SDS-25-1yA"/>
                     </connections>
