@@ -10,6 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    var scrollView: UIScrollView!
+    
+    var refreshControl: UIRefreshControl!
+    
+    let imageView = UIImageView()
+    
+    let width = UIScreen.main.bounds.width
+    
     var playListArr:[PlayList] = [] {
         didSet {
             
@@ -18,12 +28,62 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        tableViewSetup()
         api()
     }
 
 
 }
+extension ViewController {
+    
+    func tableViewSetup() {
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        //refreshControl
+//        refreshControl = UIRefreshControl()
+//        self.refreshControl.addTarget(self, action: #selector(ViewController.refresh), for: UIControlEvents.valueChanged)
+//        refreshControl.attributedTitle = NSAttributedString(string: "重新整理中...")
+//        tableView?.addSubview(self.refreshControl)
+        
+        //ScrollView
+        scrollView = UIScrollView()
+        scrollView.frame = CGRect(x: 0, y: 0, width: width, height: width)
+        scrollView.contentSize = CGSize(width: width, height: width)
+        scrollView.bouncesZoom = true
+        scrollView.delegate = self
+        
+        //headerView
+        
+        imageView.frame = CGRect(x: 0, y: 0, width: width, height: width)
+        imageView.image = UIImage(named: "MidtermCover")
+        scrollView.addSubview(imageView)
+        
+        tableView.tableHeaderView = scrollView
+    }
+    
+    
+}
+
+extension ViewController: UITableViewDelegate {
+    
+    
+}
+
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    
+    
+}
+
 extension ViewController {
     
     func api() {

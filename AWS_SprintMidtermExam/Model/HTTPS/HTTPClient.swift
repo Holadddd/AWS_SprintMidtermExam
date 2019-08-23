@@ -184,8 +184,9 @@ struct PlayList: Codable {
     var explicitness: Bool
     var available_territories: [String]
     var album: Album
+    var favorite: Bool
     enum Codingkeys: String, CodingKey {
-        case id, name, duration, url, track_number, explicitness, available_territories, album
+        case id, name, duration, url, track_number, explicitness, available_territories, album, favorite
     }
 }
 
